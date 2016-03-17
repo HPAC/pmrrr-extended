@@ -372,6 +372,11 @@ int pmrrr(char *jobz, char *range, int *np, double  *D_dbl,
 
     /* If matrix was scaled, rescale eigenvalues */
     invscale_eigenvalues(Wstruct, scale, *nzp);
+    
+    /* eigenvalues were not written into right array before */
+    for (i=0; i<*nzp; i++) {
+      W_dbl[i] = W[i];           
+    }
 
     clean_up(comm_dup, Werr, Wgap, gersch, iblock, iproc, Windex,
 	     isplit, Zindex, procinfo, Dstruct, Wstruct, Zstruct,
